@@ -14,7 +14,7 @@ namespace ACM.BL
         /// </summary>
         public Product Retrive(int productId)
         {
-           var product = new Product(productId);
+            var product = new Product(productId);
 
             // Temporary hard-coded
             if (productId == 2)
@@ -24,7 +24,9 @@ namespace ACM.BL
                 product.CurrentPrice = 15.23M;
             }
 
-
+            Object myObj = new Object();
+            Console.WriteLine($"Object:{myObj.ToString()}");
+            Console.WriteLine($"Product:{product.ToString()}");
             return product;
 
         }
@@ -33,7 +35,27 @@ namespace ACM.BL
         /// </summary>
         public bool Save(Product product)
         {
-            return true;
+            var success = true;
+            if (product.HasChages)
+            {
+                if (product.IsValid)
+                {
+                    if (product.IsNew)
+                    {
+                        //Call an insert Stored Procedure
+                    }
+                    else
+                    {
+                        //Call  an Update Stored Procedure
+                    }
+                }
+                else
+                {
+                    success = false;
+                }
+            }
+            return success;
+
         }
 
 

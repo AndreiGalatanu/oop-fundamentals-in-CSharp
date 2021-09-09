@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ACM.BL
 {
-   public class OrderItem
+   public class OrderItem :EntityBase
     {
         public OrderItem()
         {
@@ -30,14 +30,33 @@ namespace ACM.BL
             return new OrderItem();
         }
         /// <summary>
-        /// Save
+        /// Save the OrderItem
         /// </summary>
-        /// <returns></returns>
-        public bool Save()
+        public bool Save(OrderItem order)
         {
-            return true;
+            var success = true;
+            if (order.HasChages)
+            {
+                if (order.IsValid)
+                {
+                    if (order.IsNew)
+                    {
+                        //Call an insert Stored Procedure
+                    }
+                    else
+                    {
+                        //Call  an Update Stored Procedure
+                    }
+                }
+                else
+                {
+                    success = false;
+                }
+            }
+            return success;
+
         }
-        public bool Vaidate()
+        public override bool Validate()
         {
             var isValid = true;
 

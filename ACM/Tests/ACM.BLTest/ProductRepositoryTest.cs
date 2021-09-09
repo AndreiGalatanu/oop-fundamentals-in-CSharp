@@ -8,7 +8,7 @@ namespace ACM.BLTest
     public class ProductRepositoryTest
     {
         [TestMethod]
-        public void TestValid()
+        public void RetrieveProduct()
         {
             //-- Arrange
 
@@ -26,5 +26,49 @@ namespace ACM.BLTest
             Assert.AreEqual(expecterd.ProductName, actual.ProductName);
 
         }
+
+        [TestMethod]
+
+        public void SaveTestValid()
+        {
+            //--Arrange
+            var prodRep = new ProductRepository();
+            var updatedProd = new Product(2)
+            {
+                CurrentPrice = 18m,
+                ProductDescription = "Assorted size of 4 brightsdad",
+                ProductName = "Sunflowers",
+                HasChages = true
+            };
+            //--Act
+            var actual = prodRep.Save(updatedProd);
+            //--Assert
+            Assert.AreEqual(true, actual);
+        }
+
+        [TestMethod]
+
+        public void SaveTestNotValid()
+        {
+            //--Arrange
+            var prodRep = new ProductRepository();
+            var updatedProd = new Product(2)
+            {
+                CurrentPrice = null,
+                ProductDescription = "Assorted size of 4 brightsdad",
+                ProductName = "Sunflowers",
+                HasChages = true
+            };
+            //--Act
+            var actual = prodRep.Save(updatedProd);
+            //--Assert
+            Assert.AreEqual(false, actual);
+        }
+
+
+
     }
+
+
 }
+

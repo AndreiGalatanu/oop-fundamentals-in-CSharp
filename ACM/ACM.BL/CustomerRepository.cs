@@ -18,24 +18,47 @@ namespace ACM.BL
         /// </summary>
         public Customer Retrieve(int customerId)
         {
-            var c1 = new Customer(customerId);
+            var customer = new Customer(customerId);
             if (customerId == 1)
             {
-                c1.EmailAddress = "brobva@dda.com";
-                c1.FirstName = "Bram";
-                c1.LastName = "Joe";
-                c1.AddressList = addressRepository.RetrieveByCustomerId(customerId).ToList();
+                customer.EmailAddress = "brobva@dda.com";
+                customer.FirstName = "Bram";
+                customer.LastName = "Joe";
+                customer.AddressList = addressRepository.RetrieveByCustomerId(customerId).ToList();
             }
-            return c1;
+            return customer;
         }
 
         /// <summary>
         /// Save the current Customer.
         /// </summary>
 
-        public bool Save(Customer c1)
+        /// <summary>
+        /// Save the product
+        /// </summary>
+        public bool Save(Customer customer)
         {
-            return true;
+            var success = true;
+            if (customer.HasChages)
+            {
+                if (customer.IsValid)
+                {
+                    if (customer.IsNew)
+                    {
+                        //Call an insert Stored Procedure
+                    }
+                    else
+                    {
+                        //Call  an Update Stored Procedure
+                    }
+                }
+                else
+                {
+                    success = false;
+                }
+            }
+            return success;
+
         }
 
 
